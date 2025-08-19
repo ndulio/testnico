@@ -1,17 +1,16 @@
-apiVersion: automation.cloudbees.io/v1alpha1
+yaml apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: wf with string trigger
-on:
-  push
+on: workflow_dispatch
 metadata:
   stages/v1alpha1:
-    - name: Demo Production
+    - name: Stage 1
       jobs:
-        - deploy-to-Demo Production
+        - job1
 jobs:
-  deploy-to-Demo Production:
+  job1:
     steps:
-      - name: Deploy to Demo Production
+      - run: echo "hello world"
         uses: docker://golang:1.20.3-alpine3.17
+        name: Hello world
         shell: sh
-        run: echo "Deploying to Demo Production"
