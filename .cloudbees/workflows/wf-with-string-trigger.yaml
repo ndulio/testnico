@@ -1,4 +1,4 @@
-yaml apiVersion: automation.cloudbees.io/v1alpha1
+apiVersion: automation.cloudbees.io/v1alpha1
 kind: workflow
 name: wf with string trigger
 on: workflow_dispatch
