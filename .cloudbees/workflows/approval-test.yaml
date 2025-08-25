@@ -9,7 +9,7 @@ metadata:
       jobs:
         - deploy-to-Prod
         - approve
-        - aaa
+        - deploy-to-Prod2
 jobs:
   deploy-to-Prod:
     needs: approve
@@ -26,13 +26,10 @@ jobs:
       approvers: ee76eade-0576-4e8f-4397-e859d4bb8f8a
       notifyAllEligibleUsers: false
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
-  aaa:
-    needs:
-      - deploy-to-Prod
-    uses: https://github.com/mluzcabrera/reusableworkflowsrepo/blob/main/.cloudbees/workflows/reusable.yaml
-    with:
-      a: a
-      b: b
-    secrets:
-      a: a
-      b: b
+  deploy-to-Prod2:
+    needs: approve
+    steps:
+      - run: echo "Deploying to Prod 2"
+        uses: docker://golang:1.20.3-alpine3.17
+        name: Deploy to Prod 2
+        shell: sh
