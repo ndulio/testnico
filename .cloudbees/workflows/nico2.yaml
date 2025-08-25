@@ -8,6 +8,8 @@ metadata:
     - name: Stage 1
       jobs:
         - job1
+        - test
+        - test2
 jobs:
   job1:
     environment: testnico
@@ -16,3 +18,15 @@ jobs:
         uses: docker://golang:1.20.3-alpine3.17
         name: Hello world
         shell: sh
+    needs: test
+  test:
+    steps:
+      - run: echo "hello 1"
+        uses: docker://golang:1.20.3-alpine3.17
+        name: asd
+  test2:
+    needs:
+      - job1
+    steps:
+      - run: echo "hello 2"
+        uses: docker://golang:1.20.3-alpine3.17
