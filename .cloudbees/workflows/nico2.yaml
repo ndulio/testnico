@@ -1,0 +1,32 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: nico2
+on:
+  workflow_dispatch: null
+metadata:
+  stages/v1alpha1:
+    - name: Stage 1
+      jobs:
+        - job1
+        - test
+        - test2
+jobs:
+  job1:
+    environment: testnico
+    steps:
+      - run: echo "hello world"
+        uses: docker://golang:1.20.3-alpine3.17
+        name: Hello world
+        shell: sh
+    needs: test
+  test:
+    steps:
+      - run: echo "hello 1"
+        uses: docker://golang:1.20.3-alpine3.17
+        name: asd
+  test2:
+    needs:
+      - job1
+    steps:
+      - run: echo "hello 2"
+        uses: docker://golang:1.20.3-alpine3.17
