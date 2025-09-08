@@ -1,0 +1,36 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: test
+on:
+  push:
+    branches:
+      - "**"
+jobs:
+  build:
+    environment: testnico
+    services:
+      test:
+        image: asd
+        env:
+          nico: asdsad
+        args: sad
+    steps:
+      - name: Say hello
+        run: |
+          echo "hello world"
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        env:
+          nico: test
+          test: asdnjasdjajksdn
+          asddasasd: ss
+      - name: asd
+        uses: docker://bb
+        env:
+          nico: asdads
+    outputs:
+      nico: test
+      asd: sdds
+env:
+  asddas: ads
+  noasd-: as
