@@ -1,0 +1,52 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: My workflow
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  nico:
+    steps:
+      - name: dasd
+        uses: docker
+      - name: asdio
+        uses: docker
+  test:
+    steps:
+
+    - name: asdij
+      uses: docker
+  asidjij:
+    steps:
+    - name: asdjiuo
+      uses: doicker
+  asidjjisd:
+    steps:
+      - name: asdijijasd
+        uses: docker
+  nico2:
+    steps:
+      - name: asdijjiasd
+        uses: docker
+  test3:
+    steps:
+      - name: adsjiiasdj
+        uses: docker
+  test8:
+    steps:
+      - name: asdiojiasd
+        uses: docker
+  teetetet:
+    steps:
+      - name: adsijk
+        uses: docker
+  build:
+    steps:
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "hello world"
