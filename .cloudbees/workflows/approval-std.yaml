@@ -4,6 +4,14 @@ name: approval-std
 on:
   workflow_dispatch:
 jobs:
+  deploy:
+    environment: EnvRquiredApproval
+    steps:
+      - name: requiredapproval
+        uses: docker://nico
+        shell: sh
+        run: |
+          echo "hello world approved"
   build:
     steps:
       - name: Say hello
