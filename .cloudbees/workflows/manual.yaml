@@ -5,19 +5,10 @@ name: My workflow
 on:
   workflow_dispatch:
 jobs:
-  build:
-    steps:
-      - name: Say hello
-        uses: docker://golang:1.20.3-alpine3.17
-        shell: sh
-        run: |
-          echo "hello world"
-    needs:
-      - approval-job
   approval-job:
     delegates: cloudbees-io/manual-approval/custom-job.yml@v1
     with:
-      approvers: ff67605a-b3ca-11ef-9745-42010a83ae7d
+      approvers: 3f57a526-f069-11ec-a326-42010a83ae55
       disallowLaunchByUser: false
       instructions: some
       approvalInputs: |
@@ -33,14 +24,12 @@ jobs:
           options:
             - op1
             - op2
-  echo-approval-inputs:
+  build:
     steps:
-      - uses: docker://golang:1.20.3-alpine3.17
-        name: Echo approver inputs
+      - name: Say hello
+        uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          echo comments: ${{needs.approval-job.outputs.comments }}
-          echo in1 input: ${{ fromJSON(needs.approval-job.outputs.approvalInputValues).in1 }}
-          echo in2 input: ${{ fromJSON(needs.approval-job.outputs.approvalInputValues).in2 }}
+          echo "hello world"
     needs:
       - approval-job
